@@ -23,6 +23,8 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/store', function () {
-    return view('store');
-})->name('store');
+// Route::get('/store', function () {
+//     return view('store');
+// })->name('store');
+
+Route::get('/store', [App\Http\Controllers\StoreController::class, 'show'])->name('store');
