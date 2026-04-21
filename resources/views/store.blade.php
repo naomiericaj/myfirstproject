@@ -27,11 +27,16 @@
                     <p class="card-text"><i>{{ $product->product_category->name }}</i></p>
                     <p class="card-text">Rp {{ number_format($product->price, 2, ',') }}</p>
                     <p class="card-text">{{ $product->details }}</p>
-                    <a href="{{ route('product_edit_form', $product->id) }}" class="btn btn-warning">Edit</a>
+                    @can('edit-product')
+                     <a href="{{ route('product_edit_form', $product->id) }}" class="btn btn-warning">Edit</a>
+                    @endcan
+         
                     <!-- Button trigger modal -->
+                  @can('delete-product')
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->id }}">
                      Delete
                   </button>
+                  @endcan
 
                   <!-- Delete Confirmation Modal -->
                   <div class="modal fade" id="deleteModal{{ $product->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $product->id }}" aria-hidden="true">
@@ -63,6 +68,7 @@
         @endforeach
     </div>
     
-
+    @can('insert-product')
     <a href="{{ route('product_insert_form') }}" class="btn btn-primary m-3">Insert New Product</a> 
+    @endcan
 @endsection
