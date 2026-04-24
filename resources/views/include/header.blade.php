@@ -15,6 +15,12 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
                 </li>
+
+                @auth
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('orders') ? 'active' : '' }}" href="{{ route('orders') }}">My Orders</a>
+                </li>
+                @endauth
             </ul>
             <div class="d-flex text-white align-items-center">
                 <a href="#" class="text-white me-3 fs-5"><i class="fab fa-facebook-f"></i></a>
@@ -24,6 +30,7 @@
                 @auth
                     <a href ="{{ route('view_cart') }}" class="text-white me-3 fs-5"> <i class="fas fa-shopping-cart"></i></a>
                 @endauth
+
                 
                 @guest
                     <a href="{{ route('login.show') }}" class="btn btn-light btn-sm ms-2 px-4 fw-bold rounded-pill text-primary shadow-sm hover-shadow">Login</a>
